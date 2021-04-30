@@ -1,0 +1,107 @@
+<html>
+<head>
+	<title>Form Input Data Covid-19</title>
+	<style>
+		body {
+			font-family: "segoe ui";
+		}
+		h1 {
+			font-size: 25px;
+		}
+		input, select {
+			border: 1px solid #CCCCCC;
+			padding: 7px;
+			font-size: 14px;
+		}
+		input[type="submit"] {
+			padding: 7px 15px;
+			margin-left: 120px;
+			cursor: pointer;
+		}
+		label {
+			width: 120px;
+			display: block;
+			float: left;
+		}
+		.checkbox, .radio {
+			float:none;
+			width: auto;
+		}
+		.row::after {
+			content: "";
+			display: block;
+			clear:both;
+		}
+		.row {
+			margin-bottom: 5px;
+			clear: both;
+		}
+		.options {
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<h1>Form Input Data Covid-19</h1>
+	<form action="" method="post">
+		<div class="row">
+			<label>Nama Wilayah</label>
+			<select name="area">
+				<?php $options = array('DKI Jakarta', 'Jawa Barat', 'Banten', 'Jawa Tengah');
+				foreach ($options as $area) {
+					$selected = @$_POST['area'] == $area ? ' selected="selected"' : '';
+					echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>';
+				}?>
+			</select>
+		</div>
+		<div class="row">
+			<label>Jumlah Positif</label>
+			<input type="text" name="positif" value="<?=isset($_POST['positif']) ? $_POST['positif'] : ''?>"/>
+		</div>
+		<div class="row">
+			<label>Jumlah Dirawat</label>
+			<input type="text" name="rawat" value="<?=isset($_POST['rawat']) ? $_POST['rawat'] : ''?>"/>
+		</div>
+		<div class="row">
+			<label>Jumlah Sembuh</label>
+			<input type="text" name="sembuh" value="<?=isset($_POST['sembuh']) ? $_POST['sembuh'] : ''?>"/>
+		</div>
+		<div class="row">
+			<label>Jumlah Meninggal</label>
+			<input type="text" name="mati" value="<?=isset($_POST['mati']) ? $_POST['mati'] : ''?>"/>
+		</div>
+		<div class="row">
+			<label>Nama Operator</label>
+			<input type="text" name="operator" value="<?=isset($_POST['operator']) ? $_POST['operator'] : ''?>"/>
+		</div>
+		<div class="row">
+			<label>NIM</label>
+			<input type="text" name="nim" value="<?=isset($_POST['nim']) ? $_POST['nim'] : ''?>"/>
+		</div>
+		<div class="row">
+			<input type="submit" name="submit" value="Simpan"/>
+		</div>
+	</form>
+	<?php
+	if (isset($_POST['submit'])) {
+		echo 'Data Pemantauan Covid-19 Wilayah '. $_POST['area'];
+		echo "<br/>";echo "Per ";
+		echo date('d-M-Y  h:i:s');
+		echo '<br/>'.$_POST['operator'].'/'.$_POST['nim'];
+		echo "<table border=1>";
+echo "<tr>";
+echo '<td>Positif</td>';
+echo '<td>Dirawat</td>';
+echo '<td>Sembuh</td>';
+echo '<td>Meninggal</td>';
+echo "</tr>";
+echo "<tr>";
+echo '<td>'.$_POST['positif'].'</td>';
+echo '<td>'.$_POST['rawat'].'</td>';
+echo '<td>'.$_POST['sembuh'].'</td>';
+echo '<td>'.$_POST['mati'].'</td>';
+echo "</tr>";
+			
+	}?>
+</body>
+</html>
